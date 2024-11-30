@@ -7,6 +7,10 @@ import (
 	"github.com/google/uuid" // import statement uuid เพื่อใช้ในการสร้าง uuid ใหม่
 
 	"github.com/go/hun" // import statement hun เพื่อใช้ในการเรียกฟังก์ชัน Hello จากไฟล์ hun/hun.go
+
+	"strconv" // import statement strconv เพื่อใช้ในการแปลงชนิดข้อมูล
+
+	"reflect" // import statement reflect เพื่อใช้ในการแสดงชนิดข้อมูล
 )
 
 // ต้องมีฟังก์ชัน main ในไฟล์ที่จะรันโปรแกรมเสมอ
@@ -296,7 +300,7 @@ func main() {
 		Name string
 		Age int
 		Weight float64
-		something []int
+		something []int // slice ใน struct
 		TestList []test1
 		test test1
 	}
@@ -342,7 +346,21 @@ func main() {
 	)
 
 	fmt.Println(hun.AddTwoNum(1, 2)) // เรียกใช้ฟังก์ชัน AddTwoNum จากไฟล์ hun/hun2.go
+
+
+	// 
+	// 
+	// check type and convert type
+	// onee := 1 // การประกาศตัวแปร onee
+	const onee = 1 // การประกาศค่าคงที่
+	fmt.Println(strconv.Itoa(onee), onee) // แสดงผลตัวแปร one
+	fmt.Println(reflect.TypeOf(onee), "onee") // แสดงชนิดข้อมูลของตัวแปร onee
+	fmt.Println(reflect.TypeOf(strconv.Itoa(onee)), "onee") // แสดงชนิดข้อมูลของตัวแปร onee
+
 	
+	// 
+	//
+	// 
 }
 
 // go run main.go คือคำสั่งที่ใช้ในการรันโปรแกรม file main.go
