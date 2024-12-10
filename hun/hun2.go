@@ -17,7 +17,6 @@ func Hello2() {
 
 	// testInternal() // เรียกใช้ฟังก์ชัน testInternal จากไฟล์ hun2.go ไม่สามารถเรียกใช้ได้เพราะเป็น private function
 
-
 	internal_test.Example2() // จะเรียกใช้ฟังก์ชัน Example2 จากไฟล์ internal/test-internal.go ไม่สามารถเรียกใช้ได้เพราะเป็น private function
 }
 
