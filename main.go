@@ -3,6 +3,9 @@ package main // package declaration
 
 import (
 	"fmt" // import statement fmt เพื่อใช้ในการแสดงผล
+	"regexp"
+	"sort"    // import statement sort เพื่อใช้ในการเรียงลำดับข้อมูล
+	"strings" // import statement strings เพื่อใช้ในการจัดการข้อความ
 
 	"github.com/google/uuid" // import statement uuid เพื่อใช้ในการสร้าง uuid ใหม่
 
@@ -35,16 +38,13 @@ func main() {
 	var name string = "John Doe" // การประกาศตัวแปรแบบกำหนดชนิดข้อมูล
 	fmt.Println(name)            // แสดงผลตัวแปร name
 	fmt.Printf(uu + name)        // แสดงผลตัวแปร uu และ name โดยไม่ขึ้นบรรทัดใหม่
-
-	var age int = 20 // การประกาศตัวแปรแบบกำหนดชนิดข้อมูล
-	fmt.Println(age) // แสดงผลตัวแปร age
-
-	var weight = 70.5   // การประกาศตัวแปรแบบกำหนดชนิดข้อมูล
-	fmt.Println(weight) // แสดงผลตัวแปร weight
-
-	var isTrue bool     // การประกาศตัวแปรแบบไม่กำหนดค่า
-	isTrue = true       // การกำหนดค่าให้กับตัวแปร
-	fmt.Println(isTrue) // แสดงผลตัวแปร isTrue
+	var age int = 20             // การประกาศตัวแปรแบบกำหนดชนิดข้อมูล
+	fmt.Println(age)             // แสดงผลตัวแปร age
+	var weight = 70.5            // การประกาศตัวแปรแบบกำหนดชนิดข้อมูล
+	fmt.Println(weight)          // แสดงผลตัวแปร weight
+	var isTrue bool              // การประกาศตัวแปรแบบไม่กำหนดค่า
+	isTrue = true                // การกำหนดค่าให้กับตัวแปร
+	fmt.Println(isTrue)          // แสดงผลตัวแปร isTrue
 
 	var one, two, three int = 1, 2, 3 // การประกาศตัวแปรแบบกำหนดชนิดข้อมูล แบบหลายตัวพร้อมกัน
 	fmt.Println(one, two, three)      // แสดงผลตัวแปร one, two, three
@@ -92,6 +92,20 @@ func main() {
 	var name1 string            // การประกาศตัวแปรแบบกำหนดชนิดข้อมูล
 	fmt.Scanf("%s", &name1)     // รับค่าจากผู้ใช้ %s คือ format specifier ที่ใช้ในการรับค่าข้อความ
 	fmt.Println(name1, "name1") // แสดงผลค่าที่รับมาจากผู้ใช้
+
+	fmt.Println(" ")
+	fmt.Println("split")
+	text := "123,456,789"                          // การประกาศตัวแปรแบบไม่กำหนดชนิดข้อมูล
+	fmt.Println(strings.Split(text, ","), "split") // การแยกข้อความด้วยเครื่องหมาย ,
+	fmt.Println("Fields")
+	// ถ้าต้องการแยกข้อความโดยใช้ช่องว่าง (space, tab, หรือ newline) เป็นตัวคั่น:
+	text2 := "123       456  789"                // การประกาศตัวแปรแบบไม่กำหนดชนิดข้อมูล
+	fmt.Println(strings.Fields(text2), "Fields") // การแยกข้อความด้วยช่องว่าง
+	// ใช้ Regular Expression แยกข้อความด้วยตัวเลข
+	fmt.Println("Regular Expression")
+	text3 := "one1two2three3four"
+	re := regexp.MustCompile("[0-9]+")
+	fmt.Println(re.FindAllString(text3, -1))
 
 	var age1 int              // การประกาศตัวแปรแบบกำหนดชนิดข้อมูล
 	fmt.Scanf("%d", &age1)    // รับค่าจากผู้ใช้ %d คือ format specifier ที่ใช้ในการรับค่าตัวเลข
@@ -164,6 +178,16 @@ func main() {
 	fmt.Println(numbers5)                  // แสดงผลตัวแปร numbers5
 	numbers6 := [...]int{}
 	fmt.Println(numbers6)
+	srcSlice := []int{1, 2, 3, 4, 5} // การประกาศตัวแปรแบบไม่กำหนดชนิดข้อมูล
+	destSlice := make([]int, len(srcSlice))
+	copy(destSlice, srcSlice)
+	fmt.Println(destSlice, "copy")
+
+	fmt.Println(" ")
+	fmt.Println("sort")
+	sort2 := []int{3, 2, 1, 5, 4}
+	sort.Ints(sort2)
+	fmt.Println(sort2, "sort")
 
 	// map
 	// map คือ key-value pair
@@ -343,6 +367,24 @@ func main() {
 	//
 	//
 	//
+	fmt.Println(" ")
+	fmt.Println("Method with a receiver") // Method
+	student2 := Student{                  // การประกาศตัวแปรแบบกำหนดชนิดข้อมูล และค่าข้อมูล
+		firstName: "John",
+		lastName:  "Doe",
+	}
+	fullName := student2.FullName("123123") // การเรียกใช้ฟังก์ชัน FullName
+	fmt.Println(fullName)                   // แสดงผล fullName
+
+}
+
+type Student struct {
+	firstName string
+	lastName  string
+}
+
+func (s Student) FullName(ss string) string {
+	return s.firstName + " " + s.lastName + " " + ss
 }
 
 // go run main.go คือคำสั่งที่ใช้ในการรันโปรแกรม file main.go
