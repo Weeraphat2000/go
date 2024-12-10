@@ -179,15 +179,17 @@ func main() {
 	numbers6 := [...]int{}
 	fmt.Println(numbers6)
 	srcSlice := []int{1, 2, 3, 4, 5} // การประกาศตัวแปรแบบไม่กำหนดชนิดข้อมูล
-	a := []int{1, 2}
-	b := []int{3, 4}
-	c := []int{5, 6}
+	a1 := []int{1, 2}
+	b1 := []int{3, 4}
+	c1 := []int{5, 6}
 	// รวมทั้งหมดใน slice เดียว
 	// Variadic Parameters
-	combined := append(append(a, b...), append([]int{7, 8, 9}, c...)...)
+	combined := append(append(a1, b1...), append([]int{7, 8, 9}, c1...)...)
 	fmt.Println(combined, "Variadic Parameters") // Output: [1 2 3 4 7 8 9 5 6]
-	combined2 := append(a, b...)
+	combined2 := append(a1, b1...)
 	fmt.Println(combined2, "Variadic Parameters") // Output: [1 2 3 4]
+	fmt.Println("join")
+	fmt.Println(strings.Join([]string{"one", "two", "three"}, ","), "join") // การเชื่อมข้อมูลใน slice ด้วยเครื่องหมาย ,
 
 	destSlice := make([]int, len(srcSlice))
 	copy(destSlice, srcSlice)
