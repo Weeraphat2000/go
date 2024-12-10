@@ -179,6 +179,16 @@ func main() {
 	numbers6 := [...]int{}
 	fmt.Println(numbers6)
 	srcSlice := []int{1, 2, 3, 4, 5} // การประกาศตัวแปรแบบไม่กำหนดชนิดข้อมูล
+	a := []int{1, 2}
+	b := []int{3, 4}
+	c := []int{5, 6}
+	// รวมทั้งหมดใน slice เดียว
+	// Variadic Parameters
+	combined := append(append(a, b...), append([]int{7, 8, 9}, c...)...)
+	fmt.Println(combined, "Variadic Parameters") // Output: [1 2 3 4 7 8 9 5 6]
+	combined2 := append(a, b...)
+	fmt.Println(combined2, "Variadic Parameters") // Output: [1 2 3 4]
+
 	destSlice := make([]int, len(srcSlice))
 	copy(destSlice, srcSlice)
 	fmt.Println(destSlice, "copy")
@@ -242,6 +252,7 @@ func main() {
 		fmt.Println(value) // แสดงผล value
 	}
 
+	// map loop (range)
 	languages := map[string]string{
 		"en": "English",
 		"th": "Thai",
@@ -288,6 +299,8 @@ func main() {
 	a, b := isAddAndValue(2, 3)
 	fmt.Println(a, b, "2, 3") // การเรียกใช้ฟังก์ชัน isAddAndValue และส่งค่า 1 และ 2 เข้าไป
 
+	//
+	//
 	// struct
 	fmt.Println(" ")
 	fmt.Println("struct")
@@ -302,6 +315,9 @@ func main() {
 		Age:    20,
 		Weight: 70.5,
 	}
+	val := reflect.ValueOf(person)             // การแสดงชนิดข้อมูลของตัวแปร person
+	fmt.Println(val.Field(1), "vale of stuct") // แสดงชนิดข้อมูลของตัวแปร person
+
 	fmt.Println(person, person.Age) // แสดงผลตัวแปร person
 
 	type test1 struct {
